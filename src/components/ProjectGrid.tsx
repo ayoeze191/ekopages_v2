@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion, type Variants } from "framer-motion";
 import { useState } from "react";
+import { ArrowRight } from "@/components/ArrowRight";
 import { EASE_OUT } from "@/components/motion/Reveal";
 import type { Project } from "@/lib/projects";
 
@@ -70,16 +71,11 @@ export function ProjectGrid({ projects }: { projects: Project[] }) {
                     {project.location}
                   </p>
                   <a
-                    className="mt-3.5 inline-flex items-center gap-1 font-['Lato'] text-[13px] leading-[18px] font-bold text-[#5A0C91]"
+                    className="mt-3.5 flex w-fit items-center gap-1 font-['Lato'] text-[13px] leading-[18px] font-bold text-[#5A0C91]"
                     href={`#${project.slug}`}
                   >
                     View project
-                    <span
-                      className="transition-transform duration-200 group-hover:translate-x-1"
-                      aria-hidden="true"
-                    >
-                      →
-                    </span>
+                    <ArrowRight className="h-[13px] w-[13px] transition-transform duration-200 group-hover:translate-x-1" />
                   </a>
                 </div>
               </motion.div>

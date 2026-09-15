@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Reveal } from "@/components/motion/Reveal";
 import { StoreShelf } from "@/components/StoreShelf";
 import { getProducts } from "@/lib/products";
@@ -20,12 +21,12 @@ export async function EkoStore() {
               Beautifully illustrated books, written by African authors.
             </p>
           </div>
-          <a
+          <Link
             className="shrink-0 rounded-full border-[2px] border-[#5A0C91] px-[25px] py-3 text-[15px] font-bold whitespace-nowrap text-[#620a9d] transition hover:-translate-y-0.5"
-            href="#all-books"
+            href="/store"
           >
             Go to store
-          </a>
+          </Link>
         </Reveal>
         {products.length > 0 ? (
           <StoreShelf products={products} />

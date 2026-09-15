@@ -1,3 +1,4 @@
+import { ArrowRight } from "@/components/ArrowRight";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { naturalIconSize, ServiceIcon, type ServiceIconName } from "@/components/ServiceIcon";
 
@@ -82,20 +83,16 @@ export function ServicesCatalogue() {
               >
                 {service.description}
               </p>
-              {/* mt-auto pins the link / button to the card bottom so they line up across a row. */}
-              <div className="mt-auto pt-[15px]">
+              {/* mt-auto pins the link / button to the card bottom so they line up across a row.
+                  flex (not block) so the inline link doesn't sit on a 24px text line box. */}
+              <div className="mt-auto flex pt-[15px]">
                 {service.link ? (
                   <a
                     className="inline-flex items-center gap-1 font-['Lato'] text-[14px] leading-[17px] font-bold text-[#5A0C91]"
                     href={service.link.href}
                   >
                     {service.link.label}
-                    <span
-                      className="transition-transform duration-200 group-hover:translate-x-1"
-                      aria-hidden="true"
-                    >
-                      →
-                    </span>
+                    <ArrowRight className="h-[14px] w-[14px] transition-transform duration-200 group-hover:translate-x-1" />
                   </a>
                 ) : (
                   <button
