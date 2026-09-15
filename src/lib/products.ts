@@ -38,6 +38,19 @@ export async function getProducts(): Promise<Product[]> {
   }
 }
 
+export const storeFilters = ["All", "Our Books", "Our Merch"] as const;
+export type StoreFilter = (typeof storeFilters)[number];
+
+/**
+ * Mirrors v1's store tabs (product_list / book_list / merch_list). product_list already
+ * carries each product's category, so filtering client-side needs no extra requests.
+ */
+export const storeFilterCategory: Record<StoreFilter, string | null> = {
+  All: null,
+  "Our Books": "books",
+  "Our Merch": "merch",
+};
+
 /** "3500.00" -> "₦3,500" */
 export function formatPrice(price: string): string {
   const amount = Number(price);

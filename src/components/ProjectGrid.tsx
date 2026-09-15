@@ -1,21 +1,10 @@
 "use client";
 
-import { AnimatePresence, motion, type Variants } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { ArrowRight } from "@/components/ArrowRight";
-import { EASE_OUT } from "@/components/motion/Reveal";
+import { staggerCard } from "@/components/motion/Reveal";
 import type { Project } from "@/lib/projects";
-
-const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  // Staggered by grid position, so every filter result animates in as a set.
-  show: (index: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: EASE_OUT, delay: index * 0.08 },
-  }),
-  exit: { opacity: 0, scale: 0.96, transition: { duration: 0.2 } },
-};
 
 export function ProjectGrid({ projects }: { projects: Project[] }) {
   // Cards are driven by explicit state instead of inheriting the grid's whileInView:
@@ -45,7 +34,7 @@ export function ProjectGrid({ projects }: { projects: Project[] }) {
               className="h-full"
               layout
               custom={index}
-              variants={cardVariants}
+              variants={staggerCard}
               initial="hidden"
               animate={revealed ? "show" : "hidden"}
               exit="exit"

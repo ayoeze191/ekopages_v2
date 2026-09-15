@@ -62,3 +62,19 @@ export function RevealItem({ as = "div", ...props }: BaseProps) {
   const Component = tags[as] as typeof motion.div;
   return <Component variants={fadeUp} {...props} />;
 }
+
+/**
+ * For grids whose items change (filters). Each item animates itself in on mount,
+ * staggered by its `custom` index; drive it with animate={revealed ? "show" : "hidden"}.
+ * Inheriting a parent's whileInView instead only reaches items mounted at that
+ * moment, which left filtered-in cards stuck at opacity 0.
+ */
+export const staggerCard: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  show: (index: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: EASE_OUT, delay: index * 0.08 },
+  }),
+  exit: { opacity: 0, scale: 0.96, transition: { duration: 0.2 } },
+};
