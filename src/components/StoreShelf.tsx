@@ -44,7 +44,7 @@ export function StoreShelf({ products }: { products: Product[] }) {
       </button>
       <motion.div
         ref={shelfRef}
-        className="-mt-1.5 flex snap-x gap-4 overflow-x-auto overflow-y-hidden scroll-smooth pt-1.5 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="-mt-1.5 flex snap-x gap-4 overflow-x-auto overflow-y-hidden scroll-smooth pt-1.5 pb-2 [scrollbar-width:none] max-[700px]:-mx-4 max-[700px]:scroll-px-4 max-[700px]:px-4 [&::-webkit-scrollbar]:hidden"
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, amount: 0.2 }}
@@ -52,7 +52,7 @@ export function StoreShelf({ products }: { products: Product[] }) {
       >
         {products.map((product) => (
           <motion.article
-            className="group w-[154px] shrink-0 snap-start overflow-hidden rounded-xl border border-[#e8e3db] bg-white shadow-[0_7px_16px_rgb(50_32_18_/_8%)] sm:w-[236px]"
+            className="group w-[180px] shrink-0 snap-start overflow-hidden rounded-xl border border-[#e8e3db] bg-white shadow-[0_7px_16px_rgb(50_32_18_/_8%)] sm:w-[236px]"
             variants={fadeUp}
             whileHover={{ y: -4 }}
             transition={{ type: "spring", stiffness: 320, damping: 24 }}
@@ -64,14 +64,14 @@ export function StoreShelf({ products }: { products: Product[] }) {
                 src={product.image}
                 alt={product.name}
                 fill
-                sizes="(max-width: 640px) 154px, 236px"
+                sizes="(max-width: 640px) 180px, 236px"
               />
             </div>
             <div className="p-3 sm:p-4">
               <h3 className="truncate font-['Baloo_2'] text-[15px] font-bold text-[#1F0A33] sm:text-[15px]">
                 {product.name}
               </h3>
-              <p className="mt-2 leading-[100%] truncate text-[9px] font-['Lato'] text-[#4A4A4A] sm:text-[12px]">
+              <p className="mt-2 leading-[100%] truncate text-[11px] font-['Lato'] text-[#4A4A4A] sm:text-[12px]">
                 {product.author
                   ? `Written by ${product.author}`
                   : product.merch_size || " "}

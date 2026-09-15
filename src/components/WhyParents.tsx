@@ -168,7 +168,7 @@ function DropletAccent() {
 
 export function WhyParents() {
   return (
-    <section className="mx-auto mt-[100px] w-[calc(100%-3rem)] max-w-[1180px] max-[700px]:w-[calc(100%-2rem)]">
+    <section className="mx-auto mt-[100px] w-[calc(100%-3rem)] max-w-[1180px] max-[700px]:mt-16 max-[700px]:w-[calc(100%-2rem)]">
       <Reveal className="relative overflow-hidden rounded-[20px] bg-[#f9ad32] px-[24px] py-[32px] sm:px-[34px] sm:py-[42px]">
         <h2 className="text-[24px] font-['Baloo_2'] leading-tight font-bold text-[#1e0a39]">
           Why parents choose Eko Pages
@@ -181,7 +181,11 @@ export function WhyParents() {
           delay={0.15}
         >
           {benefits.map((benefit) => (
-            <RevealItem as="article" key={benefit.title} className="w-[263px]">
+            <RevealItem
+              as="article"
+              key={benefit.title}
+              className="w-[263px] max-[760px]:w-auto"
+            >
               <span
                 className={`grid h-[56px] w-[56px] place-items-center rounded-[14px] ${benefit.tone}`}
               >

@@ -9,7 +9,7 @@ const stats = [
 export function Purpose() {
   return (
     <section
-      className="mx-auto mt-[100px] grid w-[calc(100%-3rem)] max-w-[1180px] grid-cols-2 items-center gap-8 pb-[68px] max-[760px]:grid-cols-1 max-[700px]:w-[calc(100%-2rem)]"
+      className="mx-auto mt-[100px] grid w-[calc(100%-3rem)] max-w-[1180px] grid-cols-2 items-center gap-8 pb-[68px] max-[760px]:grid-cols-1 max-[700px]:mt-16 max-[700px]:w-[calc(100%-2rem)] max-[700px]:pb-0"
       id="about-us"
     >
       <RevealGroup>

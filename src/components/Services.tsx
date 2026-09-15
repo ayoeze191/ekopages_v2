@@ -94,10 +94,10 @@ function ServiceIcon({ icon }: Pick<Service, "icon">) {
 export function Services() {
   return (
     <section
-      className="mx-auto mt-[100px] w-[calc(100%-3rem)] max-w-[1180px] pb-[68px] max-[700px]:w-[calc(100%-2rem)]"
+      className="mx-auto mt-[100px] w-[calc(100%-3rem)] max-w-[1180px] pb-[68px] max-[700px]:mt-16 max-[700px]:w-[calc(100%-2rem)] max-[700px]:pb-0"
       id="services"
     >
-      <Reveal className="flex items-end justify-between ">
+      <Reveal className="flex items-end justify-between max-[700px]:flex-col max-[700px]:items-start max-[700px]:gap-5">
         <div>
           <h2 className="text-[32px] font-['Baloo_2'] leading-tight font-bold  text-[#1e0a39]">
             Explore our services
@@ -108,7 +108,7 @@ export function Services() {
           </p>
         </div>
         <a
-          className=" rounded-full font-['Lato'] border-[2px] border-[#620a9d] px-[25px] py-3 text-[15px] rounded-[999px] font-bold text-[#620a9d] transition hover:-translate-y-0.5"
+          className=" rounded-full font-['Lato'] border-[2px] border-[#620a9d] px-[25px] py-3 text-[15px] rounded-[999px] font-bold whitespace-nowrap text-[#620a9d] transition hover:-translate-y-0.5"
           href="#all-services"
         >
           See all services

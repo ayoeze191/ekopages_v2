@@ -61,7 +61,7 @@ export function Hero() {
       initial="hidden"
       animate="show"
     >
-      <div className=" px-[18px] py-[30px] max-[700px]:border-r-0 max-[700px]:px-[22px]">
+      <div className=" px-[18px] py-[30px] max-[700px]:border-r-0 max-[700px]:px-0 max-[700px]:pt-2 max-[700px]:pb-8">
         <motion.p
           className="mb-3 font-['Caveat'] text-[22px] leading-none text-[#dc8e1c]"
           variants={riseUp}
@@ -69,7 +69,7 @@ export function Hero() {
           ✎ A story-first way to learn
         </motion.p>
         <motion.h1
-          className="max-w-[610px] font-['Baloo_2'] text-[clamp(34px,3.18vw,46px)] leading-[59px] font-bold tracking-[-0.04em] max-[700px]:text-[clamp(34px,10vw,47px)]"
+          className="max-w-[610px] font-['Baloo_2'] text-[clamp(34px,3.18vw,46px)] leading-[59px] font-bold tracking-[-0.04em] max-[700px]:text-[clamp(32px,9vw,40px)] max-[700px]:leading-[1.12]"
           variants={riseUp}
         >
           Sustainability lessons kids actually{" "}
@@ -83,9 +83,12 @@ export function Hero() {
           animation and courses built for African children — so the next
           generation grows up ready to protect the planet they&apos;ll inherit.
         </motion.p>
-        <motion.div className="flex flex-wrap gap-[14px]" variants={riseUp}>
+        <motion.div
+          className="flex flex-wrap gap-[14px] max-[700px]:flex-col max-[700px]:gap-3"
+          variants={riseUp}
+        >
           <motion.a
-            className="inline-flex font-['Lato'] min-h-[50px] items-center justify-center rounded-full bg-[#5A0C91] px-[26px] text-[15px] font-bold text-white shadow-[0_8px_14px_rgb(79_0_124_/_22%)]"
+            className="inline-flex font-['Lato'] min-h-[50px] items-center justify-center rounded-full bg-[#5A0C91] px-[26px] text-[15px] font-bold text-white shadow-[0_8px_14px_rgb(79_0_124_/_22%)] max-[700px]:w-full"
             href="#start"
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.97 }}
@@ -94,7 +97,7 @@ export function Hero() {
             Start learning free
           </motion.a>
           <motion.a
-            className="inline-flex font-['Lato'] min-h-[50px] items-center justify-center rounded-full border-[2px] border-[#5A0C91] px-[26px] text-[15px] font-bold text-[#620a9d]"
+            className="inline-flex font-['Lato'] min-h-[50px] items-center justify-center rounded-full border-[2px] border-[#5A0C91] px-[26px] text-[15px] font-bold text-[#620a9d] max-[700px]:w-full"
             href="#how-it-works"
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.97 }}
@@ -105,7 +108,7 @@ export function Hero() {
         </motion.div>
       </div>
       <motion.article
-        className="@container  relative m-[18px_25px] overflow-hidden rounded-[32.56px] bg-[linear-gradient(130deg,#8027bb_0%,#5e0b98_51%,#330052_100%)] text-white shadow-[inset_0_1px_0_rgb(255_255_255_/_16%)] max-[700px]:m-[0_16px_16px] "
+        className="@container  relative m-[18px_25px] overflow-hidden rounded-[32.56px] bg-[linear-gradient(130deg,#8027bb_0%,#5e0b98_51%,#330052_100%)] text-white shadow-[inset_0_1px_0_rgb(255_255_255_/_16%)] max-[700px]:m-0 max-[700px]:aspect-[4/3] max-[700px]:rounded-[24px]"
         aria-label="Featured story: Jemima and the Wind Turbine"
         variants={card}
       >

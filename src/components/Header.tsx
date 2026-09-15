@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { MobileMenu } from "@/components/MobileMenu";
 
 const navigation = [
   { label: "About us", href: "/#about-us" },
@@ -41,7 +42,7 @@ export function Header() {
           ))}
         </nav>
         <button
-          className="justify-self-end border-0 bg-transparent p-0 text-xs text-[#1e0a39]"
+          className="justify-self-end border-0 bg-transparent p-0 text-xs text-[#1e0a39] max-[700px]:hidden"
           type="button"
           aria-label="Open Oyin's account"
         >
@@ -55,6 +56,7 @@ export function Header() {
             Hello, Oyin
           </span>
         </button>
+        <MobileMenu navigation={navigation} />
       </div>
     </header>
   );

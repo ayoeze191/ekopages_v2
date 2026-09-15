@@ -49,7 +49,7 @@ function PartnerLogo({ partner }: { partner: (typeof partners)[number] }) {
       transition={{ type: "spring", stiffness: 380, damping: 22 }}
     >
       <Image
-        className="h-[68px] w-[180px] object-contain opacity-75 grayscale transition-[filter,opacity] duration-300 hover:opacity-100 hover:grayscale-0"
+        className="h-[68px] w-[180px] object-contain max-[700px]:h-[52px] max-[700px]:w-[140px] opacity-75 grayscale transition-[filter,opacity] duration-300 hover:opacity-100 hover:grayscale-0"
         src={partner.src}
         alt={`${partner.name} logo`}
         width={partner.width}
@@ -139,7 +139,7 @@ export function TrustStrip() {
       aria-label="Trusted partners"
     >
       <div className="mx-auto w-[calc(100%-3rem)] max-w-[1180px] max-[700px]:w-[calc(100%-2rem)]">
-        <p className="font-['Lato'] text-center text-xs font-bold tracking-[0.17em] text-[#525057]">
+        <p className="font-['Lato'] text-center text-xs font-bold tracking-[0.17em] text-[#525057] max-[700px]:text-[11px] max-[700px]:tracking-[0.1em]">
           TRUSTED BY EDUCATORS &amp; PARTNERS ACROSS AFRICA
         </p>
         <div className="mt-3.5 sm:mt-4.5">

@@ -19,7 +19,10 @@ type ProjectsHeroProps = {
   onFilterChange: (filter: ProjectFilter) => void;
 };
 
-export function ProjectsHero({ activeFilter, onFilterChange }: ProjectsHeroProps) {
+export function ProjectsHero({
+  activeFilter,
+  onFilterChange,
+}: ProjectsHeroProps) {
   return (
     <section className="bg-[linear-gradient(115deg,#5A0C91_0%,#3B0766_55%,#1F0A33_100%)] text-white">
       <motion.div
@@ -29,7 +32,7 @@ export function ProjectsHero({ activeFilter, onFilterChange }: ProjectsHeroProps
         animate="show"
       >
         <motion.p
-          className="font-['Lato'] text-[14px] leading-[20px] text-white/80"
+          className="font-['Lato'] text-[14px] leading-[20px] text-[#FFFFFF]"
           variants={riseUp}
         >
           Projects

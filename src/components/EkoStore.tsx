@@ -7,11 +7,11 @@ export async function EkoStore() {
 
   return (
     <section
-      className="mx-auto mt-[100px] w-[calc(100%-3rem)] max-w-[1180px] pb-[68px] max-[700px]:w-[calc(100%-2rem)]"
+      className="mx-auto mt-[100px] w-[calc(100%-3rem)] max-w-[1180px] pb-[68px] max-[700px]:mt-16 max-[700px]:w-[calc(100%-2rem)] max-[700px]:pb-0"
       id="store"
     >
-      <div className=" px-3 py-4 sm:px-[18px] sm:py-0">
-        <Reveal className="flex items-center justify-between gap-5 sm:pt-0">
+      <div className=" px-0 py-0 sm:px-[18px] sm:py-0">
+        <Reveal className="flex items-center justify-between gap-5 sm:pt-0 max-[700px]:flex-col max-[700px]:items-start">
           <div>
             <h2 className="text-[32px] font-['Baloo_2'] leading-tight font-bold text-[#1e0a39]">
               Eko Store
@@ -21,7 +21,7 @@ export async function EkoStore() {
             </p>
           </div>
           <a
-            className="shrink-0 rounded-full border-[2px] border-[#5A0C91] px-[25px] py-3 text-[15px] font-bold text-[#620a9d] transition hover:-translate-y-0.5"
+            className="shrink-0 rounded-full border-[2px] border-[#5A0C91] px-[25px] py-3 text-[15px] font-bold whitespace-nowrap text-[#620a9d] transition hover:-translate-y-0.5"
             href="#all-books"
           >
             Go to store
