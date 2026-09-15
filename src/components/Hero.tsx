@@ -55,7 +55,7 @@ function WaterDroplet() {
 export function Hero() {
   return (
     <motion.section
-      className="mx-auto my-[48px] grid min-h-[398px] w-[calc(100%-3rem)] max-w-[1180px] grid-cols-[1.13fr_1fr] overflow-hidden  max-[700px]:mt-8 max-[700px]:w-[calc(100%-2rem)] max-[700px]:grid-cols-1"
+      className="mx-auto my-[48px] grid min-h-[398px] w-[calc(100%-3rem)] max-w-[1180px] grid-cols-[1.13fr_1fr] overflow-hidden  max-[700px]:mt-8 max-[700px]:overflow-visible max-[700px]:w-[calc(100%-2rem)] max-[700px]:grid-cols-1"
       id="top"
       variants={container}
       initial="hidden"
