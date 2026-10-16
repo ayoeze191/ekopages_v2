@@ -9,7 +9,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
       <main className="pt-[65px] max-[700px]:pt-[62px]">
         <DashboardShell>{children}</DashboardShell>
       </main>
-      <Footer />
+      <Footer flush />
     </>
   );
 }
