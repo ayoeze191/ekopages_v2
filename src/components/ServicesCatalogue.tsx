@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowRight } from "@/components/ArrowRight";
 import { RevealGroup, RevealItem } from "@/components/motion/Reveal";
 import { naturalIconSize, ServiceIcon, type ServiceIconName } from "@/components/ServiceIcon";
@@ -15,19 +16,19 @@ const services: CatalogueService[] = [
     title: "Eko Learn",
     description: "Affordable school & group packages unlocking books, courses, quizzes and games.",
     icon: "book",
-    link: { label: "Explore Eko Learn", href: "#eko-learn" },
+    link: { label: "Explore Eko Learn", href: "/services/eko-learn" },
   },
   {
     title: "Eko Tales",
     description: "A weekly publication of children's stories themed around the SDGs.",
     icon: "heart",
-    link: { label: "Browse all tales", href: "#eko-tales" },
+    link: { label: "Browse all tales", href: "/services/eko-tales" },
   },
   {
     title: "SDG Literacy Drive",
     description: "A social initiative educating the African child on the SDGs through literature.",
     icon: "documentText",
-    link: { label: "Browse all drives", href: "#sdg-literacy-drive" },
+    link: { label: "Browse all drives", href: "/projects/sdg-literacy-drive" },
   },
   {
     title: "Book a Tutor",
@@ -87,13 +88,13 @@ export function ServicesCatalogue() {
                   flex (not block) so the inline link doesn't sit on a 24px text line box. */}
               <div className="mt-auto flex pt-[15px]">
                 {service.link ? (
-                  <a
+                  <Link
                     className="inline-flex items-center gap-1 font-['Lato'] text-[14px] leading-[17px] font-bold text-[#5A0C91]"
                     href={service.link.href}
                   >
                     {service.link.label}
                     <ArrowRight className="h-[14px] w-[14px] transition-transform duration-200 group-hover:translate-x-1" />
-                  </a>
+                  </Link>
                 ) : (
                   <button
                     className="h-8 w-full rounded-full border-[1.5px] border-[#C9A3DD] px-4 text-left font-['Lato'] text-[13px] text-[#9A7BB5] transition-colors hover:bg-[#F4EEF8]"

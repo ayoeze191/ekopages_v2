@@ -1,9 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
+import { AccountMenu } from "@/components/auth/AccountMenu";
+import { CartButton } from "@/components/cart/CartButton";
 import { MobileMenu } from "@/components/MobileMenu";
 
 const navigation = [
-  { label: "About us", href: "/#about-us" },
+  { label: "About us", href: "/about" },
   { label: "Projects", href: "/projects" },
   { label: "Services", href: "/services" },
   { label: "Store", href: "/store" },
@@ -41,21 +43,10 @@ export function Header() {
             </Link>
           ))}
         </nav>
-        <button
-          className="justify-self-end border-0 bg-transparent p-0 text-xs text-[#1e0a39] max-[700px]:hidden"
-          type="button"
-          aria-label="Open Oyin's account"
-        >
-          <span
-            className="inline-grid aspect-square h-8 w-[32px] place-items-center rounded-full bg-[#620a9d] text-xs font-bold text-white"
-            aria-hidden="true"
-          >
-            O
-          </span>
-          <span className="ml-2 text-[#232323] text-[14px] font-bold">
-            Hello, Oyin
-          </span>
-        </button>
+        <div className="flex items-center gap-1 justify-self-end max-[700px]:hidden">
+          <CartButton />
+          <AccountMenu />
+        </div>
         <MobileMenu navigation={navigation} />
       </div>
     </header>

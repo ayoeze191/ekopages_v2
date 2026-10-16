@@ -2,7 +2,9 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
+import { AddToCartButton } from "@/components/cart/AddToCartButton";
 import { staggerCard } from "@/components/motion/Reveal";
 import { heartPath } from "@/components/ServiceIcon";
 import { formatPrice, type Product } from "@/lib/products";
@@ -35,20 +37,13 @@ function SaveButton({ title }: { title: string }) {
   );
 }
 
-export function StoreGrid({ products }: { products: Product[] }) {
+/** The animated product cards on their own, so other pages can reuse them. */
+export function StoreCards({ products }: { products: Product[] }) {
   // Same explicit reveal as the projects grid: cards filtered in later still animate.
   const [revealed, setRevealed] = useState(false);
 
   return (
-    // Design: the grid frame is 1224 wide and the cards sit against its left edge,
-    // 268.5 apart with a 42.5px visual gutter (Figma columns of 291 + 20px gap).
-    <section
-      className="mx-auto w-[calc(100%-3rem)] max-w-[1224px] pt-[120px] pb-[44px] max-[700px]:w-[calc(100%-2rem)] max-[700px]:pt-12"
-      aria-label="Products"
-    >
-      <p className="sr-only" aria-live="polite">
-        {`Showing ${products.length} products`}
-      </p>
+    <>
       {products.length === 0 ? (
         <p className="py-10 text-center font-['Lato'] text-[14px] text-[#6b646a]">
           Our shelves are restocking — check back shortly.
@@ -74,11 +69,15 @@ export function StoreGrid({ products }: { products: Product[] }) {
               >
                 {/* Hover lives on an inner layer so it never waits on the stagger delay above. */}
                 <motion.div
-                  className="group flex h-full min-h-[378px] flex-col overflow-hidden rounded-2xl border border-[#EAE4DA] bg-white shadow-[0_8px_20px_rgb(50_32_18_/_8%)] transition-shadow duration-300 hover:shadow-[0_16px_30px_rgb(50_32_18_/_12%)]"
+                  className="group relative flex h-full min-h-[378px] flex-col overflow-hidden rounded-2xl border border-[#EAE4DA] bg-white shadow-[0_8px_20px_rgb(50_32_18_/_8%)] transition-shadow duration-300 hover:shadow-[0_16px_30px_rgb(50_32_18_/_12%)]"
                   whileHover={{ y: -4 }}
                   transition={{ type: "spring", stiffness: 320, damping: 26 }}
                 >
-                  <div className="relative h-[160px] shrink-0 bg-[#efe7f4]">
+                  <Link
+                    className="relative block h-[160px] shrink-0 bg-[#efe7f4]"
+                    href={`/store/${product.id}`}
+                    aria-label={product.name}
+                  >
                     <Image
                       className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
                       src={product.image}
@@ -86,12 +85,12 @@ export function StoreGrid({ products }: { products: Product[] }) {
                       fill
                       sizes="(max-width: 560px) 100vw, 268px"
                     />
-                    <SaveButton title={product.name} />
-                  </div>
+                  </Link>
+                  <SaveButton title={product.name} />
                   {/* Body copy is centred in the card, as in the design. */}
                   <div className="flex flex-1 flex-col justify-center px-4 py-7">
                     <h3 className="font-['Baloo_2'] text-[15px] leading-[1.2] font-bold text-[#1F0A33]">
-                      {product.name}
+                      <Link href={`/store/${product.id}`}>{product.name}</Link>
                     </h3>
                     <p className="mt-[9px] font-['Lato'] text-[12px] leading-[1.3] text-[#4A4A4A]">
                       {product.author
@@ -106,12 +105,10 @@ export function StoreGrid({ products }: { products: Product[] }) {
                     <p className="mt-[14px] font-['Lato'] text-[14px] leading-[1.2] font-bold text-[#5A0C91]">
                       {formatPrice(product.price)}
                     </p>
-                    <button
-                      className="mt-[17px] h-9 w-full rounded-lg bg-[#5A0C91] font-['Lato'] text-[13px] font-bold text-white transition hover:bg-[#7915b4] active:scale-[0.98]"
-                      type="button"
-                    >
-                      Buy now
-                    </button>
+                    <AddToCartButton
+                      productId={product.id}
+                      className="mt-[17px] h-9 w-full rounded-lg bg-[#5A0C91] font-['Lato'] text-[13px] font-bold text-white transition hover:bg-[#7915b4] disabled:opacity-70"
+                    />
                   </div>
                 </motion.div>
               </motion.article>
@@ -119,6 +116,22 @@ export function StoreGrid({ products }: { products: Product[] }) {
           </AnimatePresence>
         </motion.div>
       )}
+    </>
+  );
+}
+
+export function StoreGrid({ products }: { products: Product[] }) {
+  return (
+    // Design: the grid frame is 1224 wide and the cards sit against its left edge,
+    // 268.5 apart with a 42.5px visual gutter (Figma columns of 291 + 20px gap).
+    <section
+      className="mx-auto w-[calc(100%-3rem)] max-w-[1224px] pt-[120px] pb-[44px] max-[700px]:w-[calc(100%-2rem)] max-[700px]:pt-12"
+      aria-label="Products"
+    >
+      <p className="sr-only" aria-live="polite">
+        {`Showing ${products.length} products`}
+      </p>
+      <StoreCards products={products} />
     </section>
   );
 }

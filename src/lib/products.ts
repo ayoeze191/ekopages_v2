@@ -1,9 +1,10 @@
+import { apiUrl } from "@/lib/api";
 /**
  * Eko Pages store API — the same backend version one talks to.
  * v1: axios.create({ baseURL: "https://ekopages-production.up.railway.app/" })
  *     and the landing store dispatched get_products("All", "All") -> store/product_list/
  */
-export const API_BASE = "https://ekopages-production.up.railway.app";
+export { API_BASE } from "@/lib/config";
 
 export type Product = {
   id: number;
@@ -24,7 +25,7 @@ type ProductListResponse = {
 /** GET store/product_list/ — every product, books and merch alike. */
 export async function getProducts(): Promise<Product[]> {
   try {
-    const response = await fetch(`${API_BASE}/store/product_list/`, {
+    const response = await fetch(apiUrl("store/product_list/"), {
       // Re-fetch at most every 5 minutes; the catalogue rarely moves.
       next: { revalidate: 300 },
     });
@@ -35,6 +36,20 @@ export async function getProducts(): Promise<Product[]> {
   } catch {
     // The store is a marketing section — a backend outage shouldn't take the page down.
     return [];
+  }
+}
+
+/** Single product, from the endpoint v1 used: store/product_detail/{id}/ */
+export async function getProduct(id: number): Promise<Product | null> {
+  try {
+    const response = await fetch(apiUrl(`store/product_detail/${id}/`), {
+      next: { revalidate: 300 },
+    });
+    if (!response.ok) return null;
+    const payload: { data?: Product } = await response.json();
+    return payload.data ?? null;
+  } catch {
+    return null;
   }
 }
 

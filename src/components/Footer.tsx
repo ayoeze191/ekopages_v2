@@ -4,8 +4,23 @@ import Image from "next/image";
 import Link from "next/link";
 
 const columns = [
-  { title: "Company", links: ["About us", "Projects", "Become a partner"] },
-  { title: "Resources", links: ["Services", "Eko Store", "Eko News", "FAQs"] },
+  {
+    title: "Company",
+    links: [
+      { label: "About us", href: "/about" },
+      { label: "Projects", href: "/projects" },
+      { label: "Become a partner", href: "/become-a-partner" },
+    ],
+  },
+  {
+    title: "Resources",
+    links: [
+      { label: "Services", href: "/services" },
+      { label: "Eko Store", href: "/store" },
+      { label: "Eko News", href: "/news" },
+      { label: "FAQs", href: "/faq" },
+    ],
+  },
 ];
 
 const socials = [
@@ -72,13 +87,10 @@ export function Footer() {
               </h2>
               <ul className="mt-5 space-y-2 font-['Lato'] text-[14px] leading-[20px] text-white/75">
                 {column.links.map((link) => (
-                  <li key={link}>
-                    <a
-                      className="transition hover:text-white"
-                      href={`#${link.toLowerCase().replaceAll(" ", "-")}`}
-                    >
-                      {link}
-                    </a>
+                  <li key={link.label}>
+                    <Link className="transition hover:text-white" href={link.href}>
+                      {link.label}
+                    </Link>
                   </li>
                 ))}
               </ul>

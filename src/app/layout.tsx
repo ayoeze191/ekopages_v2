@@ -5,6 +5,8 @@ import "@fontsource/caveat/400.css";
 import "@fontsource/baloo-2/700.css";
 import "@fontsource/baloo-2/800.css";
 import "./globals.css";
+import { AuthProvider } from "@/components/auth/AuthProvider";
+import { CartProvider } from "@/components/cart/CartProvider";
 import { MotionProvider } from "@/components/motion/MotionProvider";
 
 export const metadata: Metadata = {
@@ -16,7 +18,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body className="min-h-screen bg-[#FAF7EF] text-[#1e0a39]">
-        <MotionProvider>{children}</MotionProvider>
+        <MotionProvider>
+          <AuthProvider>
+            <CartProvider>{children}</CartProvider>
+          </AuthProvider>
+        </MotionProvider>
       </body>
     </html>
   );

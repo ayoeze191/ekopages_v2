@@ -7,6 +7,7 @@ type Service = {
   description: string;
   link: string;
   icon: ServiceIconName;
+  href?: string;
   comingSoon?: boolean;
 };
 
@@ -16,6 +17,7 @@ const services: Service[] = [
     description:
       "Affordable school & group packages unlocking books, courses and set SDGs.",
     link: "Explore Eko Learn",
+    href: "/services/eko-learn",
     icon: "book",
   },
   {
@@ -23,6 +25,7 @@ const services: Service[] = [
     description:
       "A weekly publication of children's stories animated and set SDGs.",
     link: "Browse all tales",
+    href: "/services/eko-tales",
     icon: "heart",
   },
   {
@@ -30,6 +33,7 @@ const services: Service[] = [
     description:
       "A social initiative educating the African child on the SDGs through literature.",
     link: "Browse all drives",
+    href: "/projects/sdg-literacy-drive",
     icon: "document",
   },
   {
@@ -99,12 +103,12 @@ export function Services() {
                 {service.link}
               </button>
             ) : (
-              <a
+              <Link
                 className="absolute bottom-5 text-[14px] leading-[14px] font-['Lato'] font-bold text-[#620a9d]"
-                href={`#${service.title.toLowerCase().replaceAll(" ", "-")}`}
+                href={service.href ?? "/services"}
               >
                 {service.link} <span aria-hidden="true">→</span>
-              </a>
+              </Link>
             )}
           </RevealItem>
         ))}

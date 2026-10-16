@@ -3,6 +3,7 @@
 import { AnimatePresence, motion, type Transition } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useId, useState } from "react";
+import { displayName, useAuth } from "@/components/auth/AuthProvider";
 import { EASE_OUT } from "@/components/motion/Reveal";
 
 type NavItem = { label: string; href: string };
@@ -11,6 +12,7 @@ const barSpring: Transition = { type: "spring", stiffness: 420, damping: 30 };
 
 /** Hamburger + slide-down panel. Only rendered visible below the 700px mobile breakpoint. */
 export function MobileMenu({ navigation }: { navigation: NavItem[] }) {
+  const { status, user, logout } = useAuth();
   const [open, setOpen] = useState(false);
   const panelId = useId();
   const close = () => setOpen(false);
@@ -127,15 +129,41 @@ export function MobileMenu({ navigation }: { navigation: NavItem[] }) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1, transition: { delay: 0.25 } }}
               >
-                <span
-                  className="inline-grid h-8 w-8 place-items-center rounded-full bg-[#620a9d] text-xs font-bold text-white"
-                  aria-hidden="true"
-                >
-                  O
-                </span>
-                <span className="font-['Lato'] text-[14px] font-bold text-[#232323]">
-                  Hello, Oyin
-                </span>
+                {status === "authenticated" ? (
+                  <>
+                    <span
+                      className="inline-grid h-8 w-8 place-items-center rounded-full bg-[#620a9d] text-xs font-bold text-white uppercase"
+                      aria-hidden="true"
+                    >
+                      {displayName(user).charAt(0)}
+                    </span>
+                    <Link
+                      className="font-['Lato'] text-[14px] font-bold text-[#232323]"
+                      href="/dashboard"
+                      onClick={close}
+                    >
+                      Hello, {displayName(user)}
+                    </Link>
+                    <button
+                      className="ml-auto font-['Lato'] text-[14px] font-bold text-[#5A0C91]"
+                      type="button"
+                      onClick={() => {
+                        close();
+                        void logout();
+                      }}
+                    >
+                      Sign out
+                    </button>
+                  </>
+                ) : (
+                  <Link
+                    className="inline-flex min-h-[44px] w-full items-center justify-center rounded-full border-[2px] border-[#5A0C91] font-['Lato'] text-[15px] font-bold text-[#5A0C91]"
+                    href="/login"
+                    onClick={close}
+                  >
+                    Sign in
+                  </Link>
+                )}
               </motion.div>
             </motion.nav>
           </>
