@@ -4,8 +4,10 @@
  */
 export function toParagraphs(body: string): string[] {
   return body
-    .replace(/<\/?p>/gi, "\n")
-    .replace(/<br\s*\/?>/gi, "\n")
+    // Editors type paragraph breaks into the Django admin by hand, so accept
+    // every spelling they reach for: </p>, <p>, <p/>, <p />, <br>, <br/>.
+    .replace(/<\s*\/?\s*p\s*\/?\s*>/gi, "\n")
+    .replace(/<\s*br\s*\/?\s*>/gi, "\n")
     .replace(/&nbsp;/gi, " ")
     .split(/\n+/)
     .map((line) => line.trim())
