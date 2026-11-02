@@ -26,15 +26,20 @@ export function NewsGrid({ articles }: { articles: NewsArticle[] }) {
           key={article.id}
         >
           <Link className="flex h-full flex-col" href={`/news/${article.id}`}>
-            <div className="relative h-[190px] shrink-0 bg-[#efe7f4]">
-              <Image
-                className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
-                src={photoUrl(article.image, 480)}
-                alt=""
-                fill
-                sizes="(max-width: 560px) 100vw, 364px"
-                unoptimized
-              />
+            <div className="relative h-[190px] shrink-0 overflow-hidden bg-[#efe7f4]">
+              {article.image ? (
+                <Image
+                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+                  src={photoUrl(article.image, 480)}
+                  alt=""
+                  fill
+                  sizes="(max-width: 560px) 100vw, 364px"
+                  unoptimized
+                />
+              ) : (
+                // Some articles are published without a picture.
+                <div className="h-full w-full bg-[linear-gradient(130deg,#8027bb_0%,#5e0b98_51%,#330052_100%)]" />
+              )}
             </div>
             <div className="flex flex-1 flex-col px-5 pt-4 pb-5">
               <p className="font-['Lato'] text-[12px] leading-[16px] font-bold tracking-[0.08em] text-[#6b646a] uppercase">

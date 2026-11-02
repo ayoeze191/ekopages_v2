@@ -14,8 +14,16 @@ export function toParagraphs(body: string): string[] {
     .filter(Boolean);
 }
 
+/** Inline formatting editors are allowed to type into the Django admin. */
+export const INLINE_TAG = /<\s*(b|strong|i|em)\s*>([\s\S]*?)<\s*\/\s*\1\s*>/gi;
+
+/** Removes inline tags, for places that need plain text (excerpts, metadata). */
+export function stripInlineTags(text: string): string {
+  return text.replace(/<\s*\/?\s*(b|strong|i|em)\s*>/gi, "");
+}
+
 export function toExcerpt(body: string, maxLength = 150): string {
-  const [first = ""] = toParagraphs(body);
+  const [first = ""] = toParagraphs(body).map(stripInlineTags);
   if (first.length <= maxLength) return first;
   const cut = first.slice(0, maxLength);
   return `${cut.slice(0, cut.lastIndexOf(" "))}…`;

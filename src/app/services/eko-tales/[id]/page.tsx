@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/Footer";
+import { RichText } from "@/components/RichText";
 import { Header } from "@/components/Header";
 import { TalesGrid } from "@/components/TalesGrid";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
@@ -75,7 +76,7 @@ export default async function TalePage({ params }: TaleParams) {
                 className="mb-5 font-['Lato'] text-[16px] leading-[28px] text-[#4A4A4A]"
                 key={index}
               >
-                {paragraph}
+                <RichText text={paragraph} />
               </p>
             ))}
           </Reveal>

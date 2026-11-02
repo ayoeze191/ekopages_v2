@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/Footer";
+import { RichText } from "@/components/RichText";
 import { Header } from "@/components/Header";
 import { NewsGrid } from "@/components/NewsGrid";
 import { Reveal, RevealGroup, RevealItem } from "@/components/motion/Reveal";
@@ -65,17 +66,22 @@ export default async function ArticlePage({ params }: ArticleParams) {
               </h1>
             </RevealItem>
             <RevealItem>
-              <div className="relative mt-8 h-[420px] overflow-hidden rounded-[28px] bg-[#efe7f4] max-[700px]:h-[220px]">
-                <Image
-                  className="object-cover"
-                  src={photoUrl(article.image, 1140)}
-                  alt=""
-                  fill
-                  sizes="(max-width: 1140px) 100vw, 1140px"
-                  priority
-                  unoptimized
-                />
-              </div>
+              {article.image ? (
+                <div className="relative mt-8 h-[420px] overflow-hidden rounded-[28px] bg-[#efe7f4] max-[700px]:h-[220px]">
+                  <Image
+                    className="object-cover"
+                    src={photoUrl(article.image, 1140)}
+                    alt=""
+                    fill
+                    sizes="(max-width: 1140px) 100vw, 1140px"
+                    priority
+                    unoptimized
+                  />
+                </div>
+              ) : (
+                // Published without a picture — keep the rhythm with a slim band.
+                <div className="mt-8 h-[120px] rounded-[28px] bg-[linear-gradient(130deg,#8027bb_0%,#5e0b98_51%,#330052_100%)]" />
+              )}
             </RevealItem>
           </RevealGroup>
 
@@ -85,7 +91,7 @@ export default async function ArticlePage({ params }: ArticleParams) {
                 className="mb-5 font-['Lato'] text-[16px] leading-[28px] text-[#4A4A4A]"
                 key={index}
               >
-                {paragraph}
+                <RichText text={paragraph} />
               </p>
             ))}
           </Reveal>
